@@ -2,6 +2,9 @@ import Fluent
 import Vapor
 
 struct TodoController: RouteCollection {
+    
+    //MARK: Setup
+    
     func boot(routes: RoutesBuilder) throws {
         let todos = routes.grouped("todos")
         todos.get(use: index)
@@ -9,6 +12,13 @@ struct TodoController: RouteCollection {
         todos.group(":todoID") { todo in
             todo.delete(use: delete)
         }
+    }
+    
+    
+    //MARK: Methods
+    
+    func test(req: Request) -> String {
+        req.url.path
     }
 
     func index(req: Request) async throws -> [Todo] {

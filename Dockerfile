@@ -74,6 +74,21 @@ WORKDIR /app
 # Copy built executable and any staged resources from builder
 COPY --from=build --chown=vapor:vapor /staging /app
 
+ARG DATABASE_HOST=${DATABASE_HOST}
+ENV DATABASE_HOST=${DATABASE_HOST}
+
+ARG DATABASE_PORT=${DATABASE_PORT}
+ENV DATABASE_PORT=${DATABASE_PORT}
+
+ARG DATABASE_USERNAME=${DATABASE_USERNAME}
+ENV DATABASE_USERNAME=${DATABASE_USERNAME}
+
+ARG DATABASE_PASSWORD=${DATABASE_PASSWORD}
+ENV DATABASE_PASSWORD=${DATABASE_PASSWORD}
+
+ARG DATABASE_NAME=${DATABASE_NAME}
+ENV DATABASE_NAME=${DATABASE_NAME}
+
 # Provide configuration needed by the built-in crash reporter and some sensible default behaviors.
 ENV SWIFT_BACKTRACE=enable=yes,sanitize=yes,threads=all,images=all,interactive=no,swift-backtrace=./swift-backtrace-static
 

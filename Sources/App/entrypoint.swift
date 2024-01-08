@@ -3,7 +3,9 @@ import Logging
 
 @main
 enum Entrypoint {
+    
     static func main() async throws {
+        
         var env = try Environment.detect()
         try LoggingSystem.bootstrap(from: &env)
         
@@ -16,6 +18,7 @@ enum Entrypoint {
             app.logger.report(error: error)
             throw error
         }
+        
         try await app.execute()
     }
 }
