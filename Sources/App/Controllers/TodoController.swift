@@ -16,10 +16,6 @@ struct TodoController: RouteCollection {
     
     
     //MARK: Methods
-    
-    func test(req: Request) -> String {
-        req.url.path
-    }
 
     func index(req: Request) async throws -> [Todo] {
         try await Todo.query(on: req.db).all()
